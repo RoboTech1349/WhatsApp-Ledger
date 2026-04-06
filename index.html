@@ -344,7 +344,7 @@
         doc.autoTable({ startY: 68, head: [["Date", "Item", "Amount"]], body: orderRows, theme: 'striped', headStyles: { fillColor: [7,94,84] } });
         let finalY = doc.lastAutoTable.finalY + 8;
         const paymentRows = paymentsList.map(p => [new Date(p.date).toLocaleDateString(), p.note, `$${p.amount.toFixed(2)}`]);
-        if(paymentRows.length) {
+    if(paymentRows.length) {
             doc.autoTable({ startY: finalY, head: [["Date", "Payment Note", "Amount Paid"]], body: paymentRows, theme: 'plain', headStyles: { fillColor: [100,116,139] } });
             finalY = doc.lastAutoTable.finalY + 8;
         }
@@ -450,7 +450,8 @@
                             ${selected ? `
                                 <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
                                     <div><h2>${escapeHtml(selected.name)} <span class="badge-wa">${selected.phone || 'no phone'}</span></h2>
-                                    <div><span class="badge-wa">💳 Limit $${selected.creditLimit}</span> <span class="badge-wa">Remaining $${remainingCredit.toFixed(2)}</span></div></div>
+                                    <div><span class="badge-wa">
+                                    💳 Limit $${selected.creditLimit}</span> <span class="badge-wa">Remaining $${remainingCredit.toFixed(2)}</span></div></div>
                                     <div><button id="editCustomerBtn" class="btn-outline-wa btn-wa" style="background:white;">✏️ Edit</button> <button id="deleteCustomerBtn" class="btn-danger-wa btn-wa">Delete</button></div>
                                 </div>
                                 ${limitReached ? `<div class="credit-warning">⚠️ CREDIT LIMIT REACHED! No new orders until payment.</div>` : `<div class="pay-early">💡 ${debt>0 ? "Pay early to free credit" : "No balance – ready for orders"}</div>`}
